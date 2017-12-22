@@ -18,8 +18,8 @@ $('.delete').click(function(e){
 //   $.ajax({
 //     url: $(this).attr('href'),
 //     method: 'PUT'
-//   // }).success(function(data){
-//   //   window.location.href = '/teams';
+//   }).success(function(data){
+//     window.location.href = '/teams';
 //     console.log('edit button pressed')
 //   });
 // });
