@@ -10,32 +10,34 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
   teamService.addTeam(req.body);
-
   res.redirect('/teams');
-});
-
-router.delete('/:name', function(req,res){
-	console.log('team deleted', req.params.name)
-  	teamService.deleteTeam(req.params.name)
-  		res.send('Delete Route Works!')
-});
-
-router.put('/:name', function(req,res){
-	console.log('team edited', req.params.name)
-  	teamService.editTeam(req.params.name)
-  		res.send('Edit Route Works!')
-});
-
-
-//right here
-router.get('/edit', function(req, res) {
-	var edit = teamService.editTeam();
-  	res.render('teams/edit', {edit: edit});
 });
 
 router.get('/new', function(req, res) {
   res.render('teams/new');
 });
+
+//emmy work merged with brandi
+router.delete('/:name', function(req,res){
+	// console.log('name:', req.params.name)
+  	teamService.deleteTeam(req.params.name);
+  		res.send('Delete Route Works!')
+});
+
+router.put('/:name', function(req,res){
+  	teamService.editTeam(req.params.name, req.body);
+  		res.send('PUT Success!');
+});
+
+
+//right here
+router.get('/edit/:name', function(req, res) {
+  console.log(req.param.name);
+	var team = teamService.getTeam(req.params.name);
+  	res.render('teams/edit', {team: team});
+});
+
+
 
 router.get('/:name', function(req, res) {
   // search for the team name in all the teams.
