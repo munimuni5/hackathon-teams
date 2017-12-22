@@ -26,8 +26,11 @@ router.put('/:name', function(req,res){
   		res.send('Edit Route Works!')
 });
 
+
+//right here
 router.get('/edit', function(req, res) {
-  res.render('teams/edit');
+	var edit = teamService.editTeam();
+  	res.render('teams/edit', {edit: edit});
 });
 
 router.get('/new', function(req, res) {
